@@ -2,6 +2,9 @@
 $ = (id) ->
 	document.querySelector id
 
+markWrap = (value) ->
+	"<mark>#{value}</mark>"
+
 # Pick up the typed values and interpolate into the commandstring
 getCommands = () ->
 	remoteFolder = ($ '#remote_folder').value
@@ -11,11 +14,11 @@ getCommands = () ->
 	branchName = ($ '#branch_name').value
 	
 	commands = """
-		git remote add -f <mark>#{repoName}</mark> https://github.com/<mark>#{githubUser}</mark>/<mark>#{repoName}</mark>.git
-		git merge -s ours --no-commit <mark>#{repoName}</mark>/<mark>#{branchName}</mark>
-		git read-tree --prefix=<mark>#{localFolder}</mark> -u <mark>#{repoName}</mark>/#{branchName}</mark>:<mark>#{remoteFolder}</mark>
+		git remote add -f #{markWrap(repoName)} https://github.com/#{markWrap(githubUser)}/#{markWrap(repoName)}.git
+		git merge -s ours --no-commit #{markWrap(repoName)}/#{markWrap(branchName)}
+		git read-tree --prefix=#{markWrap(localFolder)} -u #{markWrap(repoName)}/#{markWrap(branchName)}:#{markWrap(remoteFolder)}
 		
-		git commit -m "Subtree merged in <mark>#{localFolder}</mark>"
+		git commit -m "Subtree merged in #{markWrap(localFolder)}"
 	"""
 	# Update the "Terminal" output
 	($ '#output').innerHTML = "<samp>#{commands}</samp>"
