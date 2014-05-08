@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Subtree Merge Commands Tool</title>
-	<link rel="stylesheet" href="/css/app.css">
+	<title>Git Subtree Merge Commands Tool</title>
+	<meta name="description" content="A simple tool for generating the git commands needed for a subtree merge operation">
+	<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
 <section>
-	<p>I want to grab the contents of the <input type="text" placeholder="css" name="remote_folder" value="" id="remote_folder"> folder </p>
-	<p>in the <input type="text" name="branch_name" value="master" id="branch_name"> branch of</p>
-	<p><input type="text" name="github_user" placeholder="greystate" value="" id="github_user">'s</p>
-	<p><input type="text" placeholder="css-secret-sauce" name="repo_name" value="" id="repo_name"> repository</p>
-	<p>and place it in the <input type="text" name="local_folder" placeholder="less" value="" id="local_folder"> folder of my own repository.</p>
+	<header>
+		<h1>Using Git "subtree merge"</h1>
+	</header>
+	
+	<div>So, you want to grab the contents of the <input autocomplete="off" type="text" placeholder="css" name="remote_folder" value="umbraco/xslt/mocks" id="remote_folder"> folder </div>
+	<div>
+		from the <input autocomplete="off" autocapitalize="off" autocorrect="off" type="text" placeholder="master" name="branch_name" value="master" id="branch_name"> branch of
+		<input autocomplete="off" autocapitalize="off" autocorrect="off" type="text" name="github_user" placeholder="greystate" value="greystate" id="github_user">'s
+		<input autocomplete="off" autocapitalize="off" autocorrect="off" type="text" placeholder="css-secret-sauce" name="repo_name" value="library-mock" id="repo_name"> repository
+	</div>
+	<div>and place them in the <input autocomplete="off" autocapitalize="off" autocorrect="off" type="text" name="local_folder" placeholder="less" value="mocks" id="local_folder"> folder of your own repository?</div>
+
+	<p>
+		Well, here's a secret invocation of commands that'll let you do just that:
+	</p>
 
 	<pre id="output">
-		(Terminal commands should appear here when you start typing)
+
 	</pre>
 	
+	<footer>
+		Chriztian Steinmeier, <a href="https://twitter.com/greystate">@greystate</a>
+	</footer>
 </section>
 
-
-<script src="/scripts/app.js"></script>
+<script src="scripts/app.js"></script>
 
 </body>
 </html>
