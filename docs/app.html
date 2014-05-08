@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>app.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>app.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>jQuery-like utility-function to get to an element</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">$</span> = <span class="hljs-params">(id)</span> -&gt;</span>
+	<span class="hljs-built_in">document</span>.querySelector id</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Pick up the typed values and interpolate into the commandstring</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">getCommands</span> = <span class="hljs-params">()</span> -&gt;</span>
+	remoteFolder = ($ <span class="hljs-string">'#remote_folder'</span>).value
+	localFolder = ($ <span class="hljs-string">'#local_folder'</span>).value
+	githubUser = ($ <span class="hljs-string">'#github_user'</span>).value
+	repoName = ($ <span class="hljs-string">'#repo_name'</span>).value
+	branchName = ($ <span class="hljs-string">'#branch_name'</span>).value
+	
+	commands = <span class="hljs-string">"""
+		git remote add -f &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt; https://github.com/&lt;mark&gt;<span class="hljs-subst">#{githubUser}</span>&lt;/mark&gt;/&lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;.git
+		git merge -s ours --no-commit &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;/&lt;mark&gt;<span class="hljs-subst">#{branchName}</span>&lt;/mark&gt;
+		git read-tree --prefix=&lt;mark&gt;<span class="hljs-subst">#{localFolder}</span>&lt;/mark&gt; -u &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;/<span class="hljs-subst">#{branchName}</span>&lt;/mark&gt;:&lt;mark&gt;<span class="hljs-subst">#{remoteFolder}</span>&lt;/mark&gt;
+		
+		git commit -m "Subtree merged in &lt;mark&gt;<span class="hljs-subst">#{localFolder}</span>&lt;/mark&gt;"
+	"""</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Update the “Terminal” output</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	($ <span class="hljs-string">'#output'</span>).innerHTML = <span class="hljs-string">"&lt;samp&gt;<span class="hljs-subst">#{commands}</span>&lt;/samp&gt;"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Update the Terminal output “all the time” (this is not a heavy-lifting app, so the <code>keyup</code> event works even though it’s a little brute)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">document</span>.body.addEventListener <span class="hljs-string">"keyup"</span>, getCommands, <span class="hljs-literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Finally we’ll manually fire the update once the page has loaded</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>getCommands()</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
