@@ -1,7 +1,9 @@
+# jQuery-like utility-function to get to an element
 $ = (id) ->
 	document.querySelector id
 
-window.getCommands = () ->
+# Pick up the typed values and interpolate into the commandstring
+getCommands = () ->
 	remoteFolder = ($ '#remote_folder').value
 	localFolder = ($ '#local_folder').value
 	githubUser = ($ '#github_user').value
@@ -9,12 +11,17 @@ window.getCommands = () ->
 	branchName = ($ '#branch_name').value
 	
 	commands = """
-		$ git remote add -f <span style="font-weight:bold">#{repoName}</span> git://github.com/<span style="font-weight:bold">#{githubUser}</span>/<span style="font-weight:bold">#{repoName}</span>.git
-		$ git merge -s ours --no-commit <span style="font-weight:bold">#{repoName}</span>/<span style="font-weight:bold">#{branchName}</span>
-		$ git read-tree --prefix=<span style="font-weight:bold">#{localFolder}</span> -u <span style="font-weight:bold">#{repoName}</span>/#{branchName}</span>:<span style="font-weight:bold">#{remoteFolder}</span>
-		$ git commit -m "Subtree merged in <span style="font-weight:bold">#{localFolder}</span>"
+		git remote add -f <mark>#{repoName}</mark> https://github.com/<mark>#{githubUser}</mark>/<mark>#{repoName}</mark>.git
+		git merge -s ours --no-commit <mark>#{repoName}</mark>/<mark>#{branchName}</mark>
+		git read-tree --prefix=<mark>#{localFolder}</mark> -u <mark>#{repoName}</mark>/#{branchName}</mark>:<mark>#{remoteFolder}</mark>
+		
+		git commit -m "Subtree merged in <mark>#{localFolder}</mark>"
 	"""
-	
+	# Update the "Terminal" output
 	($ '#output').innerHTML = "<samp>#{commands}</samp>"
 
-document.body.addEventListener "keyup", window.getCommands, true
+# Update the Terminal output "all the time" (this is not a heavy-lifting app, so the `keyup` event works even though it's a little brute)
+document.body.addEventListener "keyup", getCommands, true
+
+# Finally we'll manually fire the update once the page has loaded
+getCommands()
