@@ -2,6 +2,7 @@
 $ = (id) ->
 	document.querySelector id
 
+# Return a `value` wrapped in `<mark>` tags
 markWrap = (value) ->
 	"<mark>#{value}</mark>"
 

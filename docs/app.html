@@ -43,6 +43,22 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
+              <p>Return a <code>value</code> wrapped in <code>&lt;mark&gt;</code> tags</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">markWrap</span> = <span class="hljs-params">(value)</span> -&gt;</span>
+	<span class="hljs-string">"&lt;mark&gt;<span class="hljs-subst">#{value}</span>&lt;/mark&gt;"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
               <p>Pick up the typed values and interpolate into the commandstring</p>
 
             </div>
@@ -55,27 +71,12 @@
 	branchName = ($ <span class="hljs-string">'#branch_name'</span>).value
 	
 	commands = <span class="hljs-string">"""
-		git remote add -f &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt; https://github.com/&lt;mark&gt;<span class="hljs-subst">#{githubUser}</span>&lt;/mark&gt;/&lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;.git
-		git merge -s ours --no-commit &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;/&lt;mark&gt;<span class="hljs-subst">#{branchName}</span>&lt;/mark&gt;
-		git read-tree --prefix=&lt;mark&gt;<span class="hljs-subst">#{localFolder}</span>&lt;/mark&gt; -u &lt;mark&gt;<span class="hljs-subst">#{repoName}</span>&lt;/mark&gt;/<span class="hljs-subst">#{branchName}</span>&lt;/mark&gt;:&lt;mark&gt;<span class="hljs-subst">#{remoteFolder}</span>&lt;/mark&gt;
+		git remote add -f <span class="hljs-subst">#{markWrap(repoName)}</span> https://github.com/<span class="hljs-subst">#{markWrap(githubUser)}</span>/<span class="hljs-subst">#{markWrap(repoName)}</span>.git
+		git merge -s ours --no-commit <span class="hljs-subst">#{markWrap(repoName)}</span>/<span class="hljs-subst">#{markWrap(branchName)}</span>
+		git read-tree --prefix=<span class="hljs-subst">#{markWrap(localFolder)}</span> -u <span class="hljs-subst">#{markWrap(repoName)}</span>/<span class="hljs-subst">#{markWrap(branchName)}</span>:<span class="hljs-subst">#{markWrap(remoteFolder)}</span>
 		
-		git commit -m "Subtree merged in &lt;mark&gt;<span class="hljs-subst">#{localFolder}</span>&lt;/mark&gt;"
+		git commit -m "Subtree merged in <span class="hljs-subst">#{markWrap(localFolder)}</span>"
 	"""</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Update the “Terminal” output</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>	($ <span class="hljs-string">'#output'</span>).innerHTML = <span class="hljs-string">"&lt;samp&gt;<span class="hljs-subst">#{commands}</span>&lt;/samp&gt;"</span></pre></div></div>
             
         </li>
         
@@ -86,11 +87,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Update the Terminal output “all the time” (this is not a heavy-lifting app, so the <code>keyup</code> event works even though it’s a little brute)</p>
+              <p>Update the “Terminal” output</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">document</span>.body.addEventListener <span class="hljs-string">"keyup"</span>, getCommands, <span class="hljs-literal">true</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>	($ <span class="hljs-string">'#output'</span>).innerHTML = <span class="hljs-string">"&lt;samp&gt;<span class="hljs-subst">#{commands}</span>&lt;/samp&gt;"</span></pre></div></div>
             
         </li>
         
@@ -100,6 +101,21 @@
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Update the Terminal output “all the time” (this is not a heavy-lifting app, so the <code>keyup</code> event works even though it’s a little brute)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">document</span>.body.addEventListener <span class="hljs-string">"keyup"</span>, getCommands, <span class="hljs-literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Finally we’ll manually fire the update once the page has loaded</p>
 
