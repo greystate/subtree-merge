@@ -1,11 +1,69 @@
+@import "normalize";
+
 html, body { margin: 0; padding: 0; }
 
 body {
-	background: #fff;
+	background: #ccc;
 	color: #314159;
+	font-family: "Marker Felt";
+	font-size: 18px;
+}
+
+h1 {
+	display: block;
+	padding-bottom: 4px;
+	margin: 0 auto 1em;
+	width: 15em;
+	text-align: center;
+	border-bottom: 2px solid currentColor;
+	
 }
 
 section {
+	padding: 2em 4em;
+	background: #fff;
+	background: linear-gradient(to right, #fff, #ccc);
 	width: 40em;
 	margin: 0 auto;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	
+	> div {
+		margin-bottom: 8px;
+	}
+	
+	> p {
+		margin: 2em 0 0;
+	}
+	
+	footer {
+		text-align: right;
+		a { color: #c90; }
+	}
+}
+
+pre {
+	font-family: "courier new";
+	margin: 1em 0;
+	padding: 10px;
+	background: #333;
+	color: #fff;
+	font-size: 80%;
+
+	mark {
+		background: transparent;
+		color: #c90;
+	}
+}
+
+input {
+	font-family: "Monaco";
+	font-weight: bold;
+	text-align: center;
+	border: 1px dashed #ccc;
+	border-radius: 4px;
+	background: #d3d3d3;
+}
+
+#branch_name, #github_user, #repo_name {
+	width: 8em;
 }
