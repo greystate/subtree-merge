@@ -1,0 +1,28 @@
+@import "sizeclasses-setup";
+
+.compact-width(@rules) {
+	@media only screen and (max-width: @compact-width-breakpoint) {
+		@rules();
+	
+		.debug &:before when (@debug-sizeclasses = true) {
+			content: "Compact ↔️";
+			@debug-rules();
+		}
+	}
+	
+	.sc-cw & when (@include-sizeclass-helpers = true) { @rules(); }
+	
+}
+
+.regular-width(@rules) {
+	@media only screen and (min-width: @regular-width-breakpoint) {
+		@rules();
+		
+		.debug &:before when (@debug-sizeclasses = true) {
+			content: "Regular ↔️";
+			@debug-rules();
+		}
+	}
+
+	.sc-rw & when (@include-sizeclass-helpers = true) { @rules(); }
+}

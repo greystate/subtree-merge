@@ -1,0 +1,26 @@
+// Global debug switch for Size Classes
+@debug-sizeclasses: false;
+
+// Include actual CSS classes, e.g.: `.sc-cw` and `.sc-rw` etc.
+@include-sizeclass-helpers: false;
+
+// Breakpoints for determining when to use compact/regular
+@compact-width-breakpoint: 568px;
+@regular-width-breakpoint: 569px;
+
+@debug-rules: {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 2px 4px;
+
+	color: #303030;
+	background: #f0e77c;
+	opacity: 0.8;
+	border-bottom-left-radius: 8px;
+
+	font: 10px "Monaco", monospace;
+	text-transform: uppercase;
+};
+
