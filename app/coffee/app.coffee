@@ -1,3 +1,5 @@
+# @codekit-prepend "querystring.coffee"
+
 # jQuery-like utility-function to get to an element
 $ = (id) ->
 	document.querySelector id
