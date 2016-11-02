@@ -42,7 +42,7 @@ getCommands = () ->
 	
 	commands = """
 		git remote add -f #{markWrap(repoName)} https://github.com/#{markWrap(githubUser)}/#{markWrap(repoName)}.git
-		git merge -s ours --no-commit #{markWrap(repoName)}/#{markWrap(branchName)}
+		git merge -s ours --no-commit --allow-unrelated-histories #{markWrap(repoName)}/#{markWrap(branchName)}
 		git read-tree --prefix=#{markWrap(localFolder)} -u #{markWrap(repoName)}/#{markWrap(branchName)}:#{markWrap(remoteFolder)}
 		
 		git commit -m "Subtree merged in #{markWrap(localFolder)}"
